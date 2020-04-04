@@ -1,21 +1,39 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { CalculatorPage, BuffsPage } from '../pages';
+import { HomePage, CalculatorPage, BuffsPage } from '../pages';
+import Navbar from '../core/navbar';
 import './app.css';
 
 const App = () => {
   return (
-    <Switch>
-      <Route 
-        path={process.env.PUBLIC_URL + '/'}
-        component={CalculatorPage}
-        exact
-      />
-      <Route 
-        path={process.env.PUBLIC_URL + '/buffs'}
-        component={BuffsPage}
-      />
-    </Switch>
+    <div className="app">
+      <div className="app__header">
+      </div>
+      <div className="app__body">
+        <div className="app__content">
+          <Switch>
+            <Route 
+              path='/'
+              component={HomePage}
+              exact
+            />
+            <Route 
+              path='/calculator'
+              component={CalculatorPage}
+            />
+            <Route 
+              path='/buffs'
+              component={BuffsPage}
+            />
+          </Switch>
+        </div>
+      </div>
+      <div className="app__footer">
+        <div className="app__navbar">
+           <Navbar />
+        </div>
+      </div>
+    </div>
   )
 };
 

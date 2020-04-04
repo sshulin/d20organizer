@@ -44,60 +44,67 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
   }
 
   return (
-    <div>
-      <div className="charedit">
-        <div className="charedit__title">
-          { currentCharacter.name }
+    <div class="page">
+      <div className="page__wrapper">
+        <div className="page__title">
+          Calculator
         </div>
-        <div className="charedit__stats">
-          {
-            Object.keys(currentCharacter.stats).map((stat) => {
-              let bonusClassList = 'charedit__stats-bonus ';
-              if(currentResult && currentResult.delta) {
-                if(currentResult.delta[stat] > 0) {
-                  bonusClassList += 'charedit__stats-bonus--positive';
-                } else if(currentResult.delta[stat] < 0) {
-                  bonusClassList += 'charedit__stats-bonus--negative';
-                }
-              }
-
-              return (
-                <div className="charedit__stats-item" key={stat}>
-                  <div className="charedit__stats-label">
-                    { propNames[stat].string }:
-                  </div>
-                  <div className="charedit__stats-content">
-                    <div className="charedit__stats-rawval">
-                      <input
-                        value={currentCharacter.stats[stat]}
-                        onChange={handleStatChange(stat)}
-                        type="text" />
-                    </div>
-                    {
-                      currentResult.delta &&
-                      <div className={bonusClassList}>
-                        { currentResult.delta ? propNames[stat].getter(currentResult.delta[stat]) : '' }
-                      </div>
+        <div className="page__section">
+          <div className="charedit">
+            <div className="charedit__title">
+              { currentCharacter.name }
+            </div>
+            <div className="charedit__stats">
+              {
+                Object.keys(currentCharacter.stats).map((stat) => {
+                  let bonusClassList = 'charedit__stats-bonus ';
+                  if(currentResult && currentResult.delta) {
+                    if(currentResult.delta[stat] > 0) {
+                      bonusClassList += 'charedit__stats-bonus--positive';
+                    } else if(currentResult.delta[stat] < 0) {
+                      bonusClassList += 'charedit__stats-bonus--negative';
                     }
-                    <div className="charedit__stats-result">
-                      { currentResult.stats ? propNames[stat].getter(currentResult.stats[stat]) : '' }
-                    </div>
-                  </div>
-                  </div>
-              )
-            })
-          }
+                  }
+
+                  return (
+                    <div className="charedit__stats-item" key={stat}>
+                      <div className="charedit__stats-label">
+                        { propNames[stat].string }:
+                      </div>
+                      <div className="charedit__stats-content">
+                        <div className="charedit__stats-rawval">
+                          <input
+                            value={currentCharacter.stats[stat]}
+                            onChange={handleStatChange(stat)}
+                            type="text" />
+                        </div>
+                        {
+                          currentResult.delta &&
+                          <div className={bonusClassList}>
+                            { currentResult.delta ? propNames[stat].getter(currentResult.delta[stat]) : '' }
+                          </div>
+                        }
+                        <div className="charedit__stats-result">
+                          { currentResult.stats ? propNames[stat].getter(currentResult.stats[stat]) : '' }
+                        </div>
+                      </div>
+                      </div>
+                  )
+                })
+              }
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <Multiselect 
-          items={buffs}
-          selected={currentCharacter.buffs}
-          keyProp="code"
-          nameGetter={buffNameGetter}
-          descriptionGetter={buffDescriptionGetter}
-          onItemClick={buffToggle}
-          />
+        <div className="page__section page__section--grower page__section--nopadding">
+          <Multiselect 
+            items={buffs}
+            selected={currentCharacter.buffs}
+            keyProp="code"
+            nameGetter={buffNameGetter}
+            descriptionGetter={buffDescriptionGetter}
+            onItemClick={buffToggle}
+            />
+        </div>
       </div>
     </div>
   );

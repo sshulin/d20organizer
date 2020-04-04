@@ -1,7 +1,85 @@
-#root {
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   max-width: 500px;
+}
+.app__footer {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.app__body {
+  flex-grow: 1;
+  position: relative;
+}
+.app__content {
+  height: 100%;
+  left: 0;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.navbar {
+  background: #f0f0f0;
+}
+.navbar__list {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.navbar__item {
+  background: #dedede;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  color: #333;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  width: 80px;
+}
+.navbar__item--active {
+  background: #333;
+  color: #dedede;
+}
+
+.page {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.page__wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.page__title {
+  background: #333;
+  color: #dedede;
+  font-size: 32px;
+  font-weight: 600;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+}
+.page__section {
+  padding: 10px;
+}
+.page__section--nopadding {
+  padding: 0;
+}
+.page__section--grower {
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .charedit {
@@ -62,7 +140,6 @@
 }
 
 .multiselect {
-  margin-top: 10px;
 }
 .multiselect__wrapper {
   border: 1px solid #f0f0f0;
