@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/d20organizer/static/css/main.a0e6f2c2.chunk.css",
+    "main.js": "/d20organizer/static/js/main.4b937dbc.chunk.js",
+    "main.js.map": "/d20organizer/static/js/main.4b937dbc.chunk.js.map",
+    "runtime-main.js": "/d20organizer/static/js/runtime-main.33d66aee.js",
+    "runtime-main.js.map": "/d20organizer/static/js/runtime-main.33d66aee.js.map",
+    "static/css/2.ffbe11c2.chunk.css": "/d20organizer/static/css/2.ffbe11c2.chunk.css",
+    "static/js/2.99cbdb9f.chunk.js": "/d20organizer/static/js/2.99cbdb9f.chunk.js",
+    "static/js/2.99cbdb9f.chunk.js.map": "/d20organizer/static/js/2.99cbdb9f.chunk.js.map",
+    "index.html": "/d20organizer/index.html",
+    "precache-manifest.7d84e31746d210abf46c7ddaef277e88.js": "/d20organizer/precache-manifest.7d84e31746d210abf46c7ddaef277e88.js",
+    "service-worker.js": "/d20organizer/service-worker.js",
+    "static/css/2.ffbe11c2.chunk.css.map": "/d20organizer/static/css/2.ffbe11c2.chunk.css.map",
+    "static/css/main.a0e6f2c2.chunk.css.map": "/d20organizer/static/css/main.a0e6f2c2.chunk.css.map",
+    "static/js/2.99cbdb9f.chunk.js.LICENSE.txt": "/d20organizer/static/js/2.99cbdb9f.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/d20organizer/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.33d66aee.js",
+    "static/css/2.ffbe11c2.chunk.css",
+    "static/js/2.99cbdb9f.chunk.js",
+    "static/css/main.a0e6f2c2.chunk.css",
+    "static/js/main.4b937dbc.chunk.js"
+  ]
+}
