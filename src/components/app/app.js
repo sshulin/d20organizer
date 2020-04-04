@@ -7,12 +7,12 @@ const App = () => {
   return (
     <Switch>
       <Route 
-        path="/"
+        path={process.env.PUBLIC_URL + '/'}
         component={CalculatorPage}
         exact
       />
       <Route 
-        path="/buffs"
+        path={process.env.PUBLIC_URL + '/buffs'}
         component={BuffsPage}
       />
     </Switch>
