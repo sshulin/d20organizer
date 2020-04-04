@@ -44,7 +44,7 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
   }
 
   return (
-    <div class="page">
+    <div className="page">
       <div className="page__wrapper">
         <div className="page__title">
           Calculator
