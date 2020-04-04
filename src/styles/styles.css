@@ -1,0 +1,85 @@
+#root {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+}
+
+.charedit {
+
+}
+.charedit__title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.charedit__stats {
+  max-width: 400px;
+  width: 100%;
+}
+.charedit__stats-item {
+  border: 1px solid #dedede;
+  display: flex;
+  line-height: 26px;
+}
+.charedit__stats-label {
+  background: #f0f0f0;
+  flex-basis: 60px;
+  flex-grow: 0;
+  text-align: center;
+}
+.charedit__stats-content {
+  display: flex;
+  flex-grow: 1;
+}
+.charedit__stats-rawval {
+  position: relative;
+}
+.charedit__stats-rawval input {
+  border: 0;
+  border-right: 1px solid #dedede;
+  font-size: 16px;
+  height: 100%;
+  left: 0;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+.charedit__stats-rawval,
+.charedit__stats-bonus,
+.charedit__stats-result {
+  flex-grow: 1;
+  flex-basis: 33.333%;
+  text-align: center;
+}
+
+.charedit__stats-bonus--positive {
+  color: #16a086;
+}
+.charedit__stats-bonus--negative {
+  color: #c0392b;
+}
+
+.multiselect {
+  margin-top: 10px;
+}
+.multiselect__wrapper {
+  border: 1px solid #f0f0f0;
+}
+.multiselect__item {
+  align-items: center;
+  border: 1px solid #f0f0f0;
+  display: flex;
+}
+.multiselect__item-icon {
+  flex-basis: 20px;
+}
+.multiselect__item-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.multiselect__item-description {
+  flex-grow: 1;
+  text-align: right;
+}
