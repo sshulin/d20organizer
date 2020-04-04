@@ -1,0 +1,21 @@
+.multiselect {
+  &__wrapper {
+    border: 1px solid #f0f0f0;
+  }
+  &__item {
+    align-items: center;
+    border: 1px solid #f0f0f0;
+    display: flex;
+  }
+  &__item-icon {
+    flex-basis: 20px;
+  }
+  &__item-name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__item-description {
+    flex-grow: 1;
+    text-align: right;
+  }
+}

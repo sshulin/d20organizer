@@ -1,0 +1,22 @@
+.navbar {
+  background: #f0f0f0;
+  &__list {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  &__item {
+    background: #dedede;
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    color: #333;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    width: 80px;
+    &--active {
+      background: #333;
+      color: #dedede;
+    }
+  }
+}

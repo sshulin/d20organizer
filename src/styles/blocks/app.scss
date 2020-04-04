@@ -1,0 +1,24 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  &__footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  &__body {
+    flex-grow: 1;
+    position: relative;
+  }
+  &__content {
+    height: 100%;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

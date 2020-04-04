@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { HomePage, CalculatorPage, BuffsPage } from '../pages';
 import Navbar from '../core/navbar';
-import './app.css';
 
 const App = () => {
   return (
