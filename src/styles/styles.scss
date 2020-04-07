@@ -1,12 +1,15 @@
-body {
-  margin: 0;
-  padding: 0;
-}
+@import '../../node_modules/npm-font-open-sans/open-sans';
 
 // colors
 
 $color-green: #16a086;
 $color-red: #c0392b;
+
+body {
+  font-family: 'Open Sans';
+  margin: 0;
+  padding: 0;
+}
 
 @import './blocks/app';
 @import './blocks/navbar';
