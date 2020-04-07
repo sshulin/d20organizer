@@ -3,8 +3,14 @@ body {
   padding: 0;
 }
 
+// colors
+
+$color-green: #16a086;
+$color-red: #c0392b;
+
 @import './blocks/app';
 @import './blocks/navbar';
 @import './blocks/charedit';
 @import './blocks/page';
 @import './blocks/multiselect';
+@import './blocks/buff-item';

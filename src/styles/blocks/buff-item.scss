@@ -1,0 +1,48 @@
+.buff-item {
+  &__wrapper {
+
+  }
+  &__header {
+    align-items: center;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 5px;
+  }
+  &__actions {
+    display: flex;
+  }
+  &__action {
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+    &--edit {
+      background: rgba($color-green, 0.2);
+      color: $color-green;
+    }
+    &--delete {
+      background: rgba($color-red, 0.2);
+      color: $color-red;
+    }
+  }
+  &__content {
+    border: 1px solid #f0f0f0;
+    padding: 5px;
+  }
+  &__stat {
+    display: flex;
+  }
+  &__stat--positive &__stat-value {
+    color: $color-green;
+  }
+  &__stat--negative &__stat-value {
+    color: $color-red;
+  }
+  &__stat-value {
+    margin-left: 4px;
+  }
+}

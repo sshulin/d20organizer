@@ -22,4 +22,8 @@ const mapStateToProps = ({ buffs }) => {
   }
 }
 
-export default connect(mapStateToProps)(BuffList);
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuffList);

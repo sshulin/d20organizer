@@ -1,11 +1,9 @@
+import stringifyModifier from './stringifyModifier';
+
 const propNames = {
   attack: {
     string: 'ATK',
-    getter: (value) => {
-      return (
-        (value > 0 ? '+' : '') + value
-      )
-    }
+    getter: stringifyModifier
   },
   ac: {
     string: 'AC',
@@ -15,11 +13,7 @@ const propNames = {
   },
   damage: {
     string: 'DMG',
-    getter: (value) => {
-      return (
-        (value > 0 ? '+' : '') + value
-      )
-    }
+    getter: stringifyModifier
   }
 };
 
