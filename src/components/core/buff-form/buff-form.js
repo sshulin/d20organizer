@@ -72,6 +72,9 @@ const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved}) => {
           </div>
         </div>
         <div className="buff-form__content">
+          <div className="buff-form__name">
+            { buff.name }
+          </div>
           <div className="buff-form__subtitle">
             Plain bonuses
           </div>
