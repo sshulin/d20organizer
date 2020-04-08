@@ -1,7 +1,10 @@
 import React from 'react';
 import BuffList from '../core/buff-list';
+import BuffForm from '../core/buff-form';
 
-const BuffsPage = () => {
+import { connect } from 'react-redux';
+
+const BuffsPage = ({ currentBuff }) => {
 
   return (
     <div className="page">
@@ -12,9 +15,25 @@ const BuffsPage = () => {
         <div className="page__section page__section--grower">
           <BuffList />
         </div>
+        {
+          currentBuff ? (
+            <div className="page__section page__section--nopadding" style={{'maxHeight': '250px'}}>
+              <BuffForm />
+            </div>
+          ) : null
+        }
       </div>
     </div>
   );
 }
 
-export default BuffsPage;
+const mapStateToProps = ({ currentBuff }) => {
+  return {
+    currentBuff
+  }
+}
+
+const mapDispatchToProps = {
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuffsPage);

@@ -71,6 +71,31 @@ const reducer = (state = initialState, action) => {
         buffs: state.buffs.filter((buff) => buff.code !== action.payload)
       }
 
+    case 'BUFF_SELECTED':
+      return {
+        ...state,
+        currentBuff: state.buffs.find((buff) => buff.code === action.payload)
+      }
+
+    case 'CURRENT_BUFF_UPDATED':
+      return {
+        ...state,
+        currentBuff: action.payload
+      }
+
+    case 'CURRENT_BUFF_SAVED':
+      const updatingIndex = state.buffs.findIndex((buff) => buff.code === action.payload.code);
+
+      return {
+        ...state,
+        buffs: [
+          ...state.buffs.slice(0, updatingIndex),
+          action.payload,
+          ...state.buffs.slice(updatingIndex + 1)
+        ],
+        currentBuff: null
+      }
+
     default:
       return state;
   }

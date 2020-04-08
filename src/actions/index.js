@@ -27,10 +27,34 @@ const buffDeleted = (buffCode) => {
 	}
 }
 
+const buffSelected = (buffCode) => {
+	return {
+		type: 'BUFF_SELECTED',
+		payload: buffCode
+	}
+}
+
+const currentBuffUpdated = (buff) => {
+	return {
+		type: 'CURRENT_BUFF_UPDATED',
+		payload: buff
+	}
+}
+
+const currentBuffSaved = (buff) => {
+	return {
+		type: 'CURRENT_BUFF_SAVED',
+		payload: buff
+	}
+}
+
 export {
 	buffsLoaded,
 	currentCharacterUpdated,
 	currentCharacterBuffToggle,
 
-	buffDeleted
+	buffDeleted,
+	buffSelected,
+	currentBuffUpdated,
+	currentBuffSaved
 };

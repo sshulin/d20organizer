@@ -1,0 +1,71 @@
+.buff-form {
+  &__header {
+    align-items: center;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title {
+    font-size: 22px;
+    font-weight: 600;
+    padding-left: 10px;
+  }
+  &__content {
+    padding: 10px;
+  }
+  &__actions {
+    background: #f0f0f0;
+    display: flex;
+  }
+  &__action {
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+    &--save {
+      background: rgba($color-green, 0.2);
+      color: $color-green;
+    }
+    &--cancel {
+      background: rgba($color-red, 0.2);
+      color: $color-red;
+    }
+  }
+
+  &__content {
+
+  }
+  &__subtitle {
+
+  }
+  &__props {
+    margin-bottom: 10px;
+  }
+
+  &__field-item {
+    border: 1px solid #dedede;
+    display: flex;
+    line-height: 26px;
+  }
+  &__field-label {
+    background: #f0f0f0;
+    flex-basis: 60px;
+    flex-grow: 0;
+    text-align: center;
+  }
+  &__field-content {
+    flex-grow: 1;
+    position: relative;
+  }
+  &__field-input {
+    border: 0;
+    border-right: 1px solid #dedede;
+    font-size: 16px;
+    height: 100%;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+  }
+}

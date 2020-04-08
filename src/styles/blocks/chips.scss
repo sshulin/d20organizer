@@ -1,0 +1,14 @@
+.chips {
+  &__list {
+    background: #f0f0f0;
+    display: flex;
+  }
+  &__item {
+    font-size: 13px;
+    margin-right: 5px;
+    &--active {
+      color: #f0f0f0;
+      background: #333;
+    }
+  }
+}
