@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/d20organizer/static/css/main.1ad6ace5.chunk.css",
-    "main.js": "/d20organizer/static/js/main.29aec90b.chunk.js",
-    "main.js.map": "/d20organizer/static/js/main.29aec90b.chunk.js.map",
+    "main.css": "/d20organizer/static/css/main.6b6aefed.chunk.css",
+    "main.js": "/d20organizer/static/js/main.91225069.chunk.js",
+    "main.js.map": "/d20organizer/static/js/main.91225069.chunk.js.map",
     "runtime-main.js": "/d20organizer/static/js/runtime-main.33d66aee.js",
     "runtime-main.js.map": "/d20organizer/static/js/runtime-main.33d66aee.js.map",
     "static/css/2.ffbe11c2.chunk.css": "/d20organizer/static/css/2.ffbe11c2.chunk.css",
-    "static/js/2.83897778.chunk.js": "/d20organizer/static/js/2.83897778.chunk.js",
-    "static/js/2.83897778.chunk.js.map": "/d20organizer/static/js/2.83897778.chunk.js.map",
+    "static/js/2.b11539ce.chunk.js": "/d20organizer/static/js/2.b11539ce.chunk.js",
+    "static/js/2.b11539ce.chunk.js.map": "/d20organizer/static/js/2.b11539ce.chunk.js.map",
     "index.html": "/d20organizer/index.html",
-    "precache-manifest.47aaf16c6a51d45a60a4e75a0d1f3202.js": "/d20organizer/precache-manifest.47aaf16c6a51d45a60a4e75a0d1f3202.js",
+    "precache-manifest.b069f4ce7e6d203449936b7101034e65.js": "/d20organizer/precache-manifest.b069f4ce7e6d203449936b7101034e65.js",
     "service-worker.js": "/d20organizer/service-worker.js",
     "static/css/2.ffbe11c2.chunk.css.map": "/d20organizer/static/css/2.ffbe11c2.chunk.css.map",
-    "static/css/main.1ad6ace5.chunk.css.map": "/d20organizer/static/css/main.1ad6ace5.chunk.css.map",
-    "static/js/2.83897778.chunk.js.LICENSE.txt": "/d20organizer/static/js/2.83897778.chunk.js.LICENSE.txt",
+    "static/css/main.6b6aefed.chunk.css.map": "/d20organizer/static/css/main.6b6aefed.chunk.css.map",
+    "static/js/2.b11539ce.chunk.js.LICENSE.txt": "/d20organizer/static/js/2.b11539ce.chunk.js.LICENSE.txt",
     "static/media/styles.scss": "/d20organizer/static/media/OpenSans-SemiboldItalic.ec55f263.woff",
     "static/media/font-awesome.min.css": "/d20organizer/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.33d66aee.js",
     "static/css/2.ffbe11c2.chunk.css",
-    "static/js/2.83897778.chunk.js",
-    "static/css/main.1ad6ace5.chunk.css",
-    "static/js/main.29aec90b.chunk.js"
+    "static/js/2.b11539ce.chunk.js",
+    "static/css/main.6b6aefed.chunk.css",
+    "static/js/main.91225069.chunk.js"
   ]
 }
