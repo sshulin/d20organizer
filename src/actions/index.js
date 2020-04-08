@@ -20,8 +20,17 @@ const currentCharacterBuffToggle = (buffCode) => {
 	}
 }
 
+const buffDeleted = (buffCode) => {
+	return {
+		type: 'BUFF_DELETED',
+		payload: buffCode
+	}
+}
+
 export {
 	buffsLoaded,
 	currentCharacterUpdated,
-	currentCharacterBuffToggle
+	currentCharacterBuffToggle,
+
+	buffDeleted
 };

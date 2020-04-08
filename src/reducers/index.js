@@ -65,6 +65,12 @@ const reducer = (state = initialState, action) => {
         currentResult: calcResult({...state.currentCharacter, buffs}, state.buffs)
       }
 
+    case 'BUFF_DELETED':
+      return {
+        ...state,
+        buffs: state.buffs.filter((buff) => buff.code !== action.payload)
+      }
+
     default:
       return state;
   }

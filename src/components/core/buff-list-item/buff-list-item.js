@@ -3,7 +3,12 @@ import React from 'react';
 import propNames from '../../../utils/propNames';
 import stringifyModifier from '../../../utils/stringifyModifier';
 
-const BuffListItem = ({buff}) => {
+const BuffListItem = ({buff, onDelete}) => {
+
+  const onDeleteWrapper = () => {
+    onDelete(buff);
+  }
+
   return (
     <div className="buff-item">
       <div className="buff-item__wrapper">
@@ -12,10 +17,15 @@ const BuffListItem = ({buff}) => {
             { buff.name }
           </div>
           <div className="buff-item__actions">
-            <div className="buff-item__action buff-item__action--delete">
+            <div
+              className="buff-item__action buff-item__action--delete"
+              onClick={onDeleteWrapper}
+              >
               <i className="fa fa-trash"></i>
             </div>
-            <div className="buff-item__action buff-item__action--edit">
+            <div
+              className="buff-item__action buff-item__action--edit"
+              >
               <i className="fa fa-pencil"></i>
             </div>
           </div>
