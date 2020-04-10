@@ -1,14 +1,38 @@
 .buff-form {
   &__header {
-    align-items: center;
     background: #f0f0f0;
-    display: flex;
-    justify-content: space-between;
+    &, & label {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
   }
-  &__title {
-    font-size: 22px;
+  &__title,
+  &__title-input {
+    font-size: 20px;
     font-weight: 600;
     padding-left: 10px;
+  }
+  &__title-input {
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    &:not(:focus) {
+      padding-left: 0;
+      width: 0;
+    }
+    &:focus {
+      width: 240px;
+    }
+  }
+  &__title-input:focus + &__title {
+    display: none;
+  }
+  &__title {
+    i {
+      margin-left: 5px;
+    }
   }
   &__content {
     padding: 10px;

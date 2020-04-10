@@ -56,13 +56,31 @@ const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved, currentBuffCreate
     }
   }
 
+  const onNameChange = (event) => {
+    let value = event.target.value;
+    
+    currentBuffUpdated({
+      ...buff,
+      name: value
+    })
+  }
+
   return (
     <div className="buff-form">
       <div className="buff-form__wrapper">
         <div className="buff-form__header">
-          <div className="buff-form__title">
-            { buff && buff.code ? 'Edit buff' : 'Create buff' }
-          </div>
+          <label>
+            <input
+              type="text"
+              className="buff-form__title-input"
+              value={buff.name}
+              onChange={onNameChange}
+              />
+            <div className="buff-form__title">
+              { buff.name }
+              <i className="fa fa-pencil"></i>
+            </div>
+          </label>
           <div className="buff-form__actions">
             <div
               className="buff-form__action buff-form__action--cancel"
@@ -79,9 +97,6 @@ const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved, currentBuffCreate
           </div>
         </div>
         <div className="buff-form__content">
-          <div className="buff-form__name">
-            { buff.name }
-          </div>
           <div className="buff-form__subtitle">
             Plain bonuses
           </div>

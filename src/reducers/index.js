@@ -3,7 +3,7 @@ import calcStatsDelta from '../utils/calcStatsDelta';
 
 const createCleanBuff = () => {
   return {
-    name: '', bonuses: {}
+    name: 'New buff', bonuses: {}
   }
 }
 
