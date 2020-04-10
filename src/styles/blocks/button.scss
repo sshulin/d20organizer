@@ -1,0 +1,15 @@
+.button {
+  border: none;
+  display: block;
+  outline: none;
+  width: 100%;
+  &--success {
+    background: rgba($color-green, 0.4);
+    color: $color-green;
+  }
+  &--lg {
+    font-size: 24px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+}

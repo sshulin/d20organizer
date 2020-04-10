@@ -48,6 +48,20 @@ const currentBuffSaved = (buff) => {
 	}
 }
 
+const cleanBuffInited = (buff) => {
+	return {
+		type: 'CLEAN_BUFF_INITED',
+		payload: buff
+	}
+}
+
+const currentBuffCreated = (buff) => {
+	return {
+		type: 'CURRENT_BUFF_CREATED',
+		payload: buff
+	}
+}
+
 export {
 	buffsLoaded,
 	currentCharacterUpdated,
@@ -56,5 +70,7 @@ export {
 	buffDeleted,
 	buffSelected,
 	currentBuffUpdated,
-	currentBuffSaved
+	currentBuffSaved,
+	cleanBuffInited,
+	currentBuffCreated
 };

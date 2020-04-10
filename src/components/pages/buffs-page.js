@@ -2,9 +2,11 @@ import React from 'react';
 import BuffList from '../core/buff-list';
 import BuffForm from '../core/buff-form';
 
+import { cleanBuffInited } from '../../actions';
+
 import { connect } from 'react-redux';
 
-const BuffsPage = ({ currentBuff }) => {
+const BuffsPage = ({ currentBuff, cleanBuffInited }) => {
 
   return (
     <div className="page">
@@ -20,7 +22,16 @@ const BuffsPage = ({ currentBuff }) => {
             <div className="page__section page__section--nopadding" style={{'maxHeight': '250px'}}>
               <BuffForm />
             </div>
-          ) : null
+          ) : (
+            <div className="page__section page__section--nopadding">
+              <button 
+                className="button button--success button--lg"
+                onClick={cleanBuffInited}
+                >
+                <i className="fa fa-plus button__icon"></i>
+              </button>
+            </div>
+          )
         }
       </div>
     </div>
@@ -34,6 +45,7 @@ const mapStateToProps = ({ currentBuff }) => {
 }
 
 const mapDispatchToProps = {
+  cleanBuffInited
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuffsPage);

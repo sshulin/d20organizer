@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { currentBuffUpdated, currentBuffSaved } from '../../../actions';
+import { currentBuffUpdated, currentBuffSaved, currentBuffCreated } from '../../../actions';
 
 import propNames from '../../../utils/propNames';
 import omitKey from '../../../utils/omitKey';
 
-const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved}) => {
+const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved, currentBuffCreated}) => {
 
   const toggleBonusProp = (prop) => {
     if(buff.bonuses.hasOwnProperty(prop)) {
@@ -30,7 +30,14 @@ const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved}) => {
   }
 
   const save = () => {
-    currentBuffSaved(buff);
+    if(buff.code) {
+      currentBuffSaved(buff);
+    } else {
+      currentBuffCreated({
+        ...buff,
+        code: buff.name.replace(' ', '_').toLowerCase()
+      })
+    }
   }
 
   const detectBuffBonusPresent = (prop) => {
@@ -151,7 +158,8 @@ const mapStateToProps = ({ currentBuff }) => {
 
 const mapDispatchToProps = {
   currentBuffUpdated,
-  currentBuffSaved
+  currentBuffSaved,
+  currentBuffCreated
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuffForm);

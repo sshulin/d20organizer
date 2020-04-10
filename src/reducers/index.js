@@ -1,6 +1,12 @@
 import calcBuffedStats from '../utils/calcBuffedStats';
 import calcStatsDelta from '../utils/calcStatsDelta';
 
+const createCleanBuff = () => {
+  return {
+    name: '', bonuses: {}
+  }
+}
+
 const calcResult = (character, buffs) => {
   const buffData = buffs.filter((buff) => character.buffs.indexOf(buff.code) !== -1);
 
@@ -93,6 +99,20 @@ const reducer = (state = initialState, action) => {
           action.payload,
           ...state.buffs.slice(updatingIndex + 1)
         ],
+        currentBuff: null
+      }
+
+    case 'CLEAN_BUFF_INITED':
+
+      return {
+        ...state,
+        currentBuff: createCleanBuff()
+      }
+
+    case 'CURRENT_BUFF_CREATED':
+      return {
+        ...state,
+        buffs: [...state.buffs, action.payload],
         currentBuff: null
       }
 
