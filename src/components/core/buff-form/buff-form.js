@@ -6,6 +6,8 @@ import { currentBuffUpdated, currentBuffSaved, currentBuffCreated } from '../../
 import propNames from '../../../utils/propNames';
 import omitKey from '../../../utils/omitKey';
 
+import PennedString from '../penned-string/';
+
 const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved, currentBuffCreated}) => {
 
   const toggleBonusProp = (prop) => {
@@ -69,18 +71,12 @@ const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved, currentBuffCreate
     <div className="buff-form">
       <div className="buff-form__wrapper">
         <div className="buff-form__header">
-          <label>
-            <input
-              type="text"
-              className="buff-form__title-input"
+          <div className="buff-form__title">
+            <PennedString
               value={buff.name}
               onChange={onNameChange}
-              />
-            <div className="buff-form__title">
-              { buff.name }
-              <i className="fa fa-pencil"></i>
-            </div>
-          </label>
+            />
+          </div>
           <div className="buff-form__actions">
             <div
               className="buff-form__action buff-form__action--cancel"

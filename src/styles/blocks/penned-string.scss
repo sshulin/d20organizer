@@ -1,0 +1,26 @@
+.penned-string {
+  &__wrapper {
+    display: block;
+  }
+  &__input {
+    background: transparent;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    font-size: inherit;
+    font-weight: inherit;
+    outline: none;
+    padding: 0;
+    &:not(:focus) {
+      height: 0;
+    }
+  }
+  &__input:focus + &__text {
+    display: none;
+  }
+  &__text {
+    i {
+      margin-left: 0.3em;
+    }
+  }
+}
