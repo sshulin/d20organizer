@@ -6,6 +6,7 @@ import { currentCharacterUpdated, currentCharacterBuffToggle } from '../../actio
 import propNames from '../../utils/propNames';
 
 import Multiselect from '../core/multiselect';
+import PennedString from '../core/penned-string';
 
 const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharacterUpdated, currentCharacterBuffToggle }) => {
 
@@ -39,6 +40,15 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
     }
   }
 
+  const onNameChange = (event) => {
+    let value = event.target.value;
+    
+    currentCharacterUpdated({
+      ...currentCharacter,
+      name: value
+    })
+  }
+
   const buffToggle = (buff) => {
     currentCharacterBuffToggle(buff.code)
   }
@@ -52,7 +62,10 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
         <div className="page__section">
           <div className="charedit">
             <div className="charedit__title">
-              { currentCharacter.name }
+              <PennedString 
+                value={ currentCharacter.name }
+                onChange={onNameChange}
+              />
             </div>
             <div className="charedit__stats">
               {
