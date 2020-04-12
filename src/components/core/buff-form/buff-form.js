@@ -119,40 +119,40 @@ const BuffForm = ({buff, currentBuffUpdated, currentBuffSaved, currentBuffCreate
           </div>
           <div className="buff-form__field-list">
             {
-              Object.keys(propNames).map((prop) => {
+              Object.keys(propNames)
+                .filter((prop) => buff.bonuses.hasOwnProperty(prop))
+                .map((prop) => {
 
-                if(!buff.bonuses.hasOwnProperty(prop)) return;
+                  const onPropChange = (event) => {
+                    let value = event.target.value.replace(/[^\d.-]/g, '');
 
-                const onPropChange = (event) => {
-                  let value = event.target.value.replace(/[^\d.-]/g, '');
+                    if(value === '-' || value === '0-') return;
+                    
+                    currentBuffUpdated({
+                      ...buff,
+                      bonuses: {
+                        ...buff.bonuses,
+                        [prop]: +value
+                      }
+                    })
+                  }
 
-                  if(value === '-' || value === '0-') return;
-                  
-                  currentBuffUpdated({
-                    ...buff,
-                    bonuses: {
-                      ...buff.bonuses,
-                      [prop]: +value
-                    }
-                  })
-                }
-
-                return (
-                  <div className="buff-form__field-item" key={prop}>
-                    <div className="buff-form__field-label">
-                      { propNames[prop].string }:
+                  return (
+                    <div className="buff-form__field-item" key={prop}>
+                      <div className="buff-form__field-label">
+                        { propNames[prop].string }:
+                      </div>
+                      <div className="buff-form__field-content">
+                        <input
+                          type="text"
+                          className="buff-form__field-input"
+                          value={buff.bonuses[prop]}
+                          onChange={onPropChange}
+                          />
+                      </div>
                     </div>
-                    <div className="buff-form__field-content">
-                      <input
-                        type="text"
-                        className="buff-form__field-input"
-                        value={buff.bonuses[prop]}
-                        onChange={onPropChange}
-                        />
-                    </div>
-                  </div>
-                )
-              })
+                  )
+                })
             }
           </div>
         </div>
