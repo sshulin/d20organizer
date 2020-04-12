@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
     case 'BUFFS_LOADED':
       return {
         ...state,
-        books: action.payload
+        buffs: action.payload
       };
 
     case 'CURRENT_CHARACTER_UPDATED':
