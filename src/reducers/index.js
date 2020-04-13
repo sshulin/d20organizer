@@ -10,7 +10,10 @@ const createCleanBuff = () => {
 
 const initialState = {
   characters: [],
-  buffs: buffCatalog,
+  buffs: {
+    loaded: false,
+    data: []
+  },
   currentCharacter: {
     name: 'Skyor',
     stats: {
@@ -31,14 +34,18 @@ const reducer = (state = initialState, action) => {
     case 'BUFFS_LOADED':
       return {
         ...state,
-        buffs: action.payload
+        buffs: {
+          ...state.buffs,
+          data: action.payload,
+          loaded: true
+        }
       };
 
     case 'CURRENT_CHARACTER_UPDATED':
       return {
         ...state,
         currentCharacter: action.payload,
-        currentResult: calcResult(action.payload, state.buffs)
+        currentResult: calcResult(action.payload, state.buffs.data)
       };
 
     case 'CURRENT_CHARACTER_BUFF_TOGGLE':
@@ -54,19 +61,22 @@ const reducer = (state = initialState, action) => {
           ...state.currentCharacter,
           buffs
         },
-        currentResult: calcResult({...state.currentCharacter, buffs}, state.buffs)
+        currentResult: calcResult({...state.currentCharacter, buffs}, state.buffs.data)
       }
 
     case 'BUFF_DELETED':
       return {
         ...state,
-        buffs: state.buffs.filter((buff) => buff.code !== action.payload)
+        buffs: {
+          ...state.buffs,
+          data: state.buffs.data.filter((buff) => buff.code !== action.payload)
+        }
       }
 
     case 'BUFF_SELECTED':
       return {
         ...state,
-        currentBuff: state.buffs.find((buff) => buff.code === action.payload)
+        currentBuff: state.buffs.data.find((buff) => buff.code === action.payload)
       }
 
     case 'CURRENT_BUFF_UPDATED':
@@ -76,15 +86,18 @@ const reducer = (state = initialState, action) => {
       }
 
     case 'CURRENT_BUFF_SAVED':
-      const updatingIndex = state.buffs.findIndex((buff) => buff.code === action.payload.code);
+      const updatingIndex = state.buffs.data.findIndex((buff) => buff.code === action.payload.code);
 
       return {
         ...state,
-        buffs: [
-          ...state.buffs.slice(0, updatingIndex),
-          action.payload,
-          ...state.buffs.slice(updatingIndex + 1)
-        ],
+        buffs: {
+          ...state.buffs,
+          data: [
+            ...state.buffs.data.slice(0, updatingIndex),
+            action.payload,
+            ...state.buffs.data.slice(updatingIndex + 1)
+          ]
+        },
         currentBuff: null
       }
 
@@ -98,7 +111,10 @@ const reducer = (state = initialState, action) => {
     case 'CURRENT_BUFF_CREATED':
       return {
         ...state,
-        buffs: [...state.buffs, action.payload],
+        buffs: {
+          ...state.buffs,
+          data: [...state.buffs.data, action.payload],
+        },
         currentBuff: null
       }
 

@@ -17,7 +17,7 @@ const BuffList = ({buffs, buffDeleted, buffSelected}) => {
   return (
     <div>
       {
-        buffs.map((buff) => {
+        buffs.data.map((buff) => {
           return (
             <BuffListItem
               key={buff.name}

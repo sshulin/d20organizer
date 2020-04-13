@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { currentCharacterUpdated, currentCharacterBuffToggle } from '../../actions';
+import {
+  currentCharacterUpdated,
+  currentCharacterBuffToggle,
+  smartFetchBuffs
+  } from '../../actions';
 
 import propNames from '../../utils/propNames';
 
 import Multiselect from '../core/multiselect';
 import PennedString from '../core/penned-string';
 
-const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharacterUpdated, currentCharacterBuffToggle }) => {
+const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharacterUpdated, currentCharacterBuffToggle, smartFetchBuffs }) => {
+
+  useEffect(() => {
+    smartFetchBuffs()
+  }, [smartFetchBuffs])
 
   const buffNameGetter = (buff) => {
     return buff.name;
@@ -110,7 +118,7 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
         </div>
         <div className="page__section page__section--grower page__section--nopadding">
           <Multiselect 
-            items={buffs}
+            items={buffs.data}
             selected={currentCharacter.buffs}
             keyProp="code"
             nameGetter={buffNameGetter}
@@ -133,7 +141,8 @@ const mapStateToProps = ({ buffs, currentCharacter, currentResult }) => {
 
 const mapDispatchToProps = {
   currentCharacterUpdated,
-  currentCharacterBuffToggle
+  currentCharacterBuffToggle,
+  smartFetchBuffs
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalculatorPage);

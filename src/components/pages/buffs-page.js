@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BuffList from '../core/buff-list';
 import BuffForm from '../core/buff-form';
 
-import { cleanBuffInited } from '../../actions';
+import { cleanBuffInited, smartFetchBuffs } from '../../actions';
 
 import { connect } from 'react-redux';
 
-const BuffsPage = ({ currentBuff, cleanBuffInited }) => {
+const BuffsPage = ({ buffs, currentBuff, cleanBuffInited, smartFetchBuffs }) => {
+
+  useEffect(() => {
+    smartFetchBuffs()
+  }, [smartFetchBuffs])
 
   return (
     <div className="page">
@@ -38,14 +42,16 @@ const BuffsPage = ({ currentBuff, cleanBuffInited }) => {
   );
 }
 
-const mapStateToProps = ({ currentBuff }) => {
+const mapStateToProps = ({ buffs, currentBuff }) => {
   return {
+    buffs,
     currentBuff
   }
 }
 
 const mapDispatchToProps = {
-  cleanBuffInited
+  cleanBuffInited,
+  smartFetchBuffs
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuffsPage);

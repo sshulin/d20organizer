@@ -1,8 +1,16 @@
+import buffCatalog from '../data/buffs';
 
 const buffsLoaded = (newBuffs) => {
 	return {
 		type: 'BUFFS_LOADED',
 		payload: newBuffs
+	}
+}
+
+const buffsRequested = (payload) => {
+	return {
+		type: 'BUFFS_REQUESTED',
+		payload: payload
 	}
 }
 
@@ -62,6 +70,22 @@ const currentBuffCreated = (buff) => {
 	}
 }
 
+const fetchBuffs = () => (dispatch) => {
+	dispatch(buffsRequested());
+
+	const getData = (callback) => {
+		callback(buffCatalog);
+	}
+
+	getData((buffs) => dispatch(buffsLoaded(buffs)));
+}
+
+const smartFetchBuffs = () => (dispatch, getState) => {
+	const { buffs: { loaded } } = getState();
+
+	if(!loaded) dispatch(fetchBuffs());
+}
+
 export {
 	buffsLoaded,
 	currentCharacterUpdated,
@@ -72,5 +96,8 @@ export {
 	currentBuffUpdated,
 	currentBuffSaved,
 	cleanBuffInited,
-	currentBuffCreated
+	currentBuffCreated,
+
+	fetchBuffs,
+	smartFetchBuffs
 };
