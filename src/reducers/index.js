@@ -1,7 +1,5 @@
 import calcResult from '../utils/calcResult';
 
-import buffCatalog from '../data/buffs';
-
 const createCleanBuff = () => {
   return {
     name: 'New buff', bonuses: {}
