@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   currentCharacterUpdated,
   currentCharacterBuffToggle,
-  smartFetchBuffs
+  smartFetchBuffs,
+  smartFetchCurrentCharacter
   } from '../../actions';
 
 import propNames from '../../utils/propNames';
@@ -12,11 +13,20 @@ import propNames from '../../utils/propNames';
 import Multiselect from '../core/multiselect';
 import PennedString from '../core/penned-string';
 
-const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharacterUpdated, currentCharacterBuffToggle, smartFetchBuffs }) => {
+const CalculatorPage = ({ 
+  buffs,
+  currentCharacter,
+  currentResult,
+  currentCharacterUpdated,
+  currentCharacterBuffToggle,
+  smartFetchBuffs,
+  smartFetchCurrentCharacter
+}) => {
 
   useEffect(() => {
-    smartFetchBuffs()
-  }, [smartFetchBuffs])
+    smartFetchBuffs();
+    smartFetchCurrentCharacter();
+  }, [smartFetchBuffs, smartFetchCurrentCharacter])
 
   const buffNameGetter = (buff) => {
     return buff.name;
@@ -37,9 +47,9 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
       if(value === '-' || value === '0-') return;
 
       let newCharacter = {
-        ...currentCharacter,
+        ...currentCharacter.data,
         stats: {
-          ...currentCharacter.stats,
+          ...currentCharacter.data.stats,
           [stat]: +value
         }
       }
@@ -52,7 +62,7 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
     let value = event.target.value;
     
     currentCharacterUpdated({
-      ...currentCharacter,
+      ...currentCharacter.data,
       name: value
     })
   }
@@ -68,81 +78,94 @@ const CalculatorPage = ({ buffs, currentCharacter, currentResult, currentCharact
           Calculator
         </div>
         <div className="page__section">
-          <div className="charedit">
-            <div className="charedit__title">
-              <PennedString 
-                value={ currentCharacter.name }
-                onChange={onNameChange}
-              />
-            </div>
-            <div className="charedit__stats">
-              {
-                Object.keys(currentCharacter.stats).map((stat) => {
-                  let bonusClassList = 'charedit__stats-bonus ';
-                  if(currentResult && currentResult.delta) {
-                    if(currentResult.delta[stat] > 0) {
-                      bonusClassList += 'charedit__stats-bonus--positive';
-                    } else if(currentResult.delta[stat] < 0) {
-                      bonusClassList += 'charedit__stats-bonus--negative';
-                    }
-                  }
-
-                  return (
-                    <div className="charedit__stats-item" key={stat}>
-                      <div className="charedit__stats-label">
-                        { propNames[stat].string }:
-                      </div>
-                      <div className="charedit__stats-content">
-                        <div className="charedit__stats-rawval">
-                          <input
-                            value={currentCharacter.stats[stat]}
-                            onChange={handleStatChange(stat)}
-                            type="text" />
-                        </div>
-                        {
-                          currentResult.delta &&
-                          <div className={bonusClassList}>
-                            { currentResult.delta ? propNames[stat].getter(currentResult.delta[stat]) : '' }
-                          </div>
+          {
+            currentCharacter.loaded ? (
+              <div className="charedit">
+                <div className="charedit__title">
+                  <PennedString 
+                    value={ currentCharacter.data.name }
+                    onChange={onNameChange}
+                  />
+                </div>
+                <div className="charedit__stats">
+                  {
+                    Object.keys(currentCharacter.data.stats).map((stat) => {
+                      let bonusClassList = 'charedit__stats-bonus ';
+                      if(currentCharacter.result && currentCharacter.result.delta) {
+                        if(currentCharacter.result.delta[stat] > 0) {
+                          bonusClassList += 'charedit__stats-bonus--positive';
+                        } else if(currentCharacter.result.delta[stat] < 0) {
+                          bonusClassList += 'charedit__stats-bonus--negative';
                         }
-                        <div className="charedit__stats-result">
-                          { currentResult.stats ? propNames[stat].getter(currentResult.stats[stat]) : '' }
-                        </div>
-                      </div>
-                      </div>
-                  )
-                })
-              }
-            </div>
-          </div>
+                      }
+
+                      return (
+                        <div className="charedit__stats-item" key={stat}>
+                          <div className="charedit__stats-label">
+                            { propNames[stat].string }:
+                          </div>
+                          <div className="charedit__stats-content">
+                            <div className="charedit__stats-rawval">
+                              <input
+                                value={currentCharacter.data.stats[stat]}
+                                onChange={handleStatChange(stat)}
+                                type="text" />
+                            </div>
+                            {
+                              (currentCharacter.result && currentCharacter.result.delta) ? (
+                                <div className={bonusClassList}>
+                                  { currentCharacter.result.delta ? propNames[stat].getter(currentCharacter.result.delta[stat]) : '' }
+                                </div>
+                              ) : null
+                            }
+                            {
+                              (currentCharacter.result && currentCharacter.result.stats) ? (
+                                <div className="charedit__stats-result">
+                                  { currentCharacter.result.stats ? propNames[stat].getter(currentCharacter.result.stats[stat]) : '' }
+                                </div>
+                              ) : null
+                            }
+                          </div>
+                          </div>
+                      )
+                    })
+                  }
+                </div>
+              </div>
+            ) : null
+          }
         </div>
         <div className="page__section page__section--grower page__section--nopadding">
-          <Multiselect 
-            items={buffs.data}
-            selected={currentCharacter.buffs}
-            keyProp="code"
-            nameGetter={buffNameGetter}
-            descriptionGetter={buffDescriptionGetter}
-            onItemClick={buffToggle}
-            />
+          {
+            (currentCharacter.loaded && buffs.loaded) ? (
+              <Multiselect 
+                items={buffs.data}
+                selected={currentCharacter.data.buffs}
+                keyProp="code"
+                nameGetter={buffNameGetter}
+                descriptionGetter={buffDescriptionGetter}
+                onItemClick={buffToggle}
+                />
+            ) : null
+          }
         </div>
       </div>
     </div>
   );
 }
 
-const mapStateToProps = ({ buffs, currentCharacter, currentResult }) => {
+const mapStateToProps = ({ buffs, currentCharacter }) => {
   return {
     buffs,
-    currentCharacter,
-    currentResult
+    currentCharacter
   }
 }
 
 const mapDispatchToProps = {
   currentCharacterUpdated,
   currentCharacterBuffToggle,
-  smartFetchBuffs
+  smartFetchBuffs,
+  smartFetchCurrentCharacter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalculatorPage);

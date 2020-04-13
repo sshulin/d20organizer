@@ -15,16 +15,9 @@ const initialState = {
     data: []
   },
   currentCharacter: {
-    name: 'Skyor',
-    stats: {
-      ac: 31,
-      attack: 12,
-      damage: 3
-    },
-    buffs: []
-  },
-  currentResult: {
-
+    loaded: false,
+    data: null,
+    result: null
   }
 };
 
@@ -41,27 +34,43 @@ const reducer = (state = initialState, action) => {
         }
       };
 
+    case 'CURRENT_CHARACTER_LOADED':
+      return {
+        ...state,
+        currentCharacter: {
+          data: action.payload,
+          result: calcResult(action.payload, state.buffs.data),
+          loaded: true
+        }
+      };
+
     case 'CURRENT_CHARACTER_UPDATED':
       return {
         ...state,
-        currentCharacter: action.payload,
-        currentResult: calcResult(action.payload, state.buffs.data)
+        currentCharacter: {
+          ...state.currentCharacter,
+          data: action.payload,
+          result: calcResult(action.payload, state.buffs.data)
+        }
       };
 
     case 'CURRENT_CHARACTER_BUFF_TOGGLE':
       let buffs;
-      if(state.currentCharacter.buffs.indexOf(action.payload) !== -1) {
-        buffs = state.currentCharacter.buffs.filter((buff) => buff !== action.payload);
+      if(state.currentCharacter.data.buffs.indexOf(action.payload) !== -1) {
+        buffs = state.currentCharacter.data.buffs.filter((buff) => buff !== action.payload);
       } else {
-        buffs = [...state.currentCharacter.buffs, action.payload];
+        buffs = [...state.currentCharacter.data.buffs, action.payload];
       }
       return {
         ...state,
         currentCharacter: {
           ...state.currentCharacter,
-          buffs
-        },
-        currentResult: calcResult({...state.currentCharacter, buffs}, state.buffs.data)
+          data: {
+            ...state.currentCharacter.data,
+            buffs
+          },
+          result: calcResult({...state.currentCharacter.data, buffs}, state.buffs.data)
+        }
       }
 
     case 'BUFF_DELETED':

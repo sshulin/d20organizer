@@ -1,4 +1,41 @@
 import buffCatalog from '../data/buffs';
+import currentCharacter from '../data/currentCharacter';
+
+const currentCharacterLoaded = (character) => {
+	return {
+		type: 'CURRENT_CHARACTER_LOADED',
+		payload: character
+	}
+}
+
+const currentCharacterUpdated = (character) => {
+	return {
+		type: 'CURRENT_CHARACTER_UPDATED',
+		payload: character
+	}
+}
+
+const fetchCurrentCharacter= () => (dispatch) => {
+	const getData = (callback) => {
+		callback(currentCharacter);
+	}
+
+	getData((buffs) => dispatch(currentCharacterLoaded(buffs)));
+}
+
+const smartFetchCurrentCharacter= () => (dispatch, getState) => {
+	const { currentCharacter: { loaded } } = getState();
+
+	if(!loaded) dispatch(fetchCurrentCharacter());
+}
+
+const currentCharacterBuffToggle = (buffCode) => {
+	return {
+		type: 'CURRENT_CHARACTER_BUFF_TOGGLE',
+		payload: buffCode
+	}
+}
+
 
 const buffsLoaded = (newBuffs) => {
 	return {
@@ -11,20 +48,6 @@ const buffsRequested = (payload) => {
 	return {
 		type: 'BUFFS_REQUESTED',
 		payload: payload
-	}
-}
-
-const currentCharacterUpdated = (character) => {
-	return {
-		type: 'CURRENT_CHARACTER_UPDATED',
-		payload: character
-	}
-}
-
-const currentCharacterBuffToggle = (buffCode) => {
-	return {
-		type: 'CURRENT_CHARACTER_BUFF_TOGGLE',
-		payload: buffCode
 	}
 }
 
@@ -99,5 +122,7 @@ export {
 	currentBuffCreated,
 
 	fetchBuffs,
-	smartFetchBuffs
+	smartFetchBuffs,
+	fetchCurrentCharacter,
+	smartFetchCurrentCharacter
 };
