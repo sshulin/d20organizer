@@ -11,38 +11,47 @@ const updateCurrentCharacter = (state, action) => {
   }
 
   switch (action.type) {
-    case 'CURRENT_CHARACTER_LOADED':
+    case 'CURRENT_CHARACTER_LOADED': {
       return {
         data: action.payload,
         result: calcResult(action.payload, state.buffs.data),
         loaded: true
       };
+    }
 
-    case 'CURRENT_CHARACTER_UPDATED':
+    case 'CURRENT_CHARACTER_UPDATED': {
+      const data = action.payload;
+
       return {
         ...state.currentCharacter,
-        data: action.payload,
+        data: data,
         result: calcResult(action.payload, state.buffs.data)
       };
+    }
 
-    case 'CURRENT_CHARACTER_BUFF_TOGGLE':
+    case 'CURRENT_CHARACTER_BUFF_TOGGLE': {
       let buffs;
       if(state.currentCharacter.data.buffs.indexOf(action.payload) !== -1) {
         buffs = state.currentCharacter.data.buffs.filter((buff) => buff !== action.payload);
       } else {
         buffs = [...state.currentCharacter.data.buffs, action.payload];
       }
+
+      const data = {
+        ...state.currentCharacter.data,
+        buffs
+      };
+
       return {
         ...state.currentCharacter,
-        data: {
-          ...state.currentCharacter.data,
-          buffs
-        },
-        result: calcResult({...state.currentCharacter.data, buffs}, state.buffs.data)
+        data,
+        result: calcResult(data, state.buffs.data)
       }
+    }
 
-    default:
+    default: {
       return state.currentCharacter
+    }
   }
 }
 

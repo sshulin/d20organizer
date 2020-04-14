@@ -12,22 +12,28 @@ const updateCurrentBuff = (state, action) => {
 
   switch (action.type) {
 
-    case 'BUFF_SELECTED':
+    case 'BUFF_SELECTED': {
       return state.buffs.data.find((buff) => buff.code === action.payload)
-    case 'CURRENT_BUFF_UPDATED':
+    }
+    case 'CURRENT_BUFF_UPDATED': {
       return action.payload
+    }
 
-    case 'CURRENT_BUFF_SAVED':
+    case 'CURRENT_BUFF_SAVED': {
       return null
+    }
 
-    case 'CLEAN_BUFF_INITED':
+    case 'CLEAN_BUFF_INITED': {
       return createCleanBuff()
+    }
 
-    case 'CURRENT_BUFF_CREATED':
+    case 'CURRENT_BUFF_CREATED': {
       return null
+    }
 
-    default:
+    default: {
       return state.currentBuff
+    }
   }
 }
 
