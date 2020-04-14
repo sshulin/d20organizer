@@ -1,5 +1,6 @@
 import buffCatalog from '../data/buffs';
 import currentCharacter from '../data/currentCharacter';
+import { getBuffsApi, getCurrentCharacterApi } from '../utils/api';
 
 const currentCharacterLoaded = (character) => {
 	return {
@@ -16,11 +17,12 @@ const currentCharacterUpdated = (character) => {
 }
 
 const fetchCurrentCharacter= () => (dispatch) => {
-	const getData = (callback) => {
-		callback(currentCharacter);
-	}
+	dispatch(buffsRequested());
 
-	getData((buffs) => dispatch(currentCharacterLoaded(buffs)));
+	getCurrentCharacterApi().then(
+		(buffs) => dispatch(currentCharacterLoaded(buffs)),
+		(error) => dispatch(currentCharacterLoaded(currentCharacter))
+	);
 }
 
 const smartFetchCurrentCharacter= () => (dispatch, getState) => {
@@ -96,11 +98,10 @@ const currentBuffCreated = (buff) => {
 const fetchBuffs = () => (dispatch) => {
 	dispatch(buffsRequested());
 
-	const getData = (callback) => {
-		callback(buffCatalog);
-	}
-
-	getData((buffs) => dispatch(buffsLoaded(buffs)));
+	getBuffsApi().then(
+		(buffs) => dispatch(buffsLoaded(buffs)),
+		(error) => dispatch(buffsLoaded(buffCatalog))
+	);
 }
 
 const smartFetchBuffs = () => (dispatch, getState) => {

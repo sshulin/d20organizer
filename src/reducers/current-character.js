@@ -1,4 +1,5 @@
 import calcResult from '../utils/calcResult';
+import { saveCurrentCharacterApi } from '../utils/api';
 
 const updateCurrentCharacter = (state, action) => {
 
@@ -21,6 +22,7 @@ const updateCurrentCharacter = (state, action) => {
 
     case 'CURRENT_CHARACTER_UPDATED': {
       const data = action.payload;
+      saveCurrentCharacterApi(data).then();
 
       return {
         ...state.currentCharacter,
@@ -41,6 +43,7 @@ const updateCurrentCharacter = (state, action) => {
         ...state.currentCharacter.data,
         buffs
       };
+      saveCurrentCharacterApi(data).then();
 
       return {
         ...state.currentCharacter,

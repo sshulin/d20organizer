@@ -1,3 +1,5 @@
+import { saveBuffsApi } from '../utils/api';
+
 const updateBuffs = (state, action) => {
 
   if(state === undefined) {
@@ -18,6 +20,7 @@ const updateBuffs = (state, action) => {
 
     case 'BUFF_DELETED': {
       const data = state.buffs.data.filter((buff) => buff.code !== action.payload);
+      saveBuffsApi(data).then();
 
       return {
         ...state.buffs,
@@ -33,6 +36,8 @@ const updateBuffs = (state, action) => {
         ...state.buffs.data.slice(updatingIndex + 1)
       ];
 
+      saveBuffsApi(data).then();
+
       return {
         ...state.buffs,
         data
@@ -41,6 +46,8 @@ const updateBuffs = (state, action) => {
 
     case 'CURRENT_BUFF_CREATED': {
       const data = [...state.buffs.data, action.payload];
+
+      saveBuffsApi(data).then();
 
       return {
         ...state.buffs,
